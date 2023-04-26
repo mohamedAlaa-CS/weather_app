@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:weatheer_app/services/weather_service.dart';
 
 class searchScreen extends StatelessWidget {
   String? CityName;
@@ -20,6 +21,8 @@ class searchScreen extends StatelessWidget {
             // 2- onSubmitted: (){} بيستقبل الداتا مره واحده بس بعد مااليويز يعمل submit
             onSubmitted: (data) {
               CityName = data;
+              weatherService service = weatherService();
+              service.getWeather(cityName: CityName!);
             },
             decoration: InputDecoration(
               contentPadding:
