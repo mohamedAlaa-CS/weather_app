@@ -13,12 +13,14 @@ class WeatherModel {
     required this.WeatherStateName,
   });
 //constractor used to data from api
-  WeatherModel.fromjson(dynamic data) {
+  factory WeatherModel.fromjson(dynamic data) {
     var jsonData = data["forecast"]["forecastday"][0];
-    date = data["location"]['localtime'];
-    temp = jsonData['avgtemp_c'];
-    maxtemp = jsonData['maxtemp_c'];
-    miniTemp = jsonData['mintemp_c'];
-    WeatherStateName = jsonData['day']['condition']["text"];
+// use facyory constructor to change normal constructor to constructor return object .
+    return WeatherModel(
+        date: data["location"]['localtime'],
+        temp: jsonData['avgtemp_c'],
+        maxtemp: jsonData['maxtemp_c'],
+        miniTemp: jsonData['mintemp_c'],
+        WeatherStateName: jsonData['condition']["text"]);
   }
 }
