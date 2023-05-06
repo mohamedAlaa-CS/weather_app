@@ -14,7 +14,7 @@ class WeatherModel {
   });
 //constractor used to data from api
   factory WeatherModel.fromjson(dynamic data) {
-    var jsonData = data["forecast"]["forecastday"][0];
+    var jsonData = data["forecast"]["forecastday"][0]['day'];
 // use facyory constructor to change normal constructor to constructor return object .
     return WeatherModel(
         date: data["location"]['localtime'],
@@ -22,5 +22,9 @@ class WeatherModel {
         maxtemp: jsonData['maxtemp_c'],
         miniTemp: jsonData['mintemp_c'],
         WeatherStateName: jsonData['condition']["text"]);
+  }
+  @override
+  String toString() {
+    return 'date =$date temp = $temp maxTemp = $maxtemp weaterstate =$WeatherStateName';
   }
 }

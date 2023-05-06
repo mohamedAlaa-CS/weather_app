@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:weatheer_app/models/weather_model.dart';
 import 'package:weatheer_app/services/weather_service.dart';
 
 class searchScreen extends StatelessWidget {
@@ -19,10 +20,12 @@ class searchScreen extends StatelessWidget {
             // to use data which enter can you use tow
             //1- on change(){}
             // 2- onSubmitted: (){} بيستقبل الداتا مره واحده بس بعد مااليويز يعمل submit
-            onSubmitted: (data) {
+            onSubmitted: (data) async {
               CityName = data;
               weatherService service = weatherService();
-              service.getWeather(cityName: CityName!);
+              WeatherModel weather =
+                  await service.getWeather(cityName: CityName!);
+              print(weather);
             },
             decoration: InputDecoration(
               contentPadding:
