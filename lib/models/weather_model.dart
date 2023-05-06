@@ -1,10 +1,10 @@
 class WeatherModel {
-  final String date;
-  final double temp;
-  final double maxtemp;
-  final double miniTemp;
-  final String WeatherStateName;
-
+  String? date;
+  double? temp;
+  double? maxtemp;
+  double? miniTemp;
+  String? WeatherStateName;
+// defolt constructor
   WeatherModel({
     required this.date,
     required this.temp,
@@ -12,4 +12,13 @@ class WeatherModel {
     required this.miniTemp,
     required this.WeatherStateName,
   });
+//constractor used to data from api
+  WeatherModel.fromjson(dynamic data) {
+    var jsonData = data["forecast"]["forecastday"][0];
+    date = data["location"]['localtime'];
+    temp = jsonData['avgtemp_c'];
+    maxtemp = jsonData['maxtemp_c'];
+    miniTemp = jsonData['mintemp_c'];
+    WeatherStateName = jsonData['day']['condition']["text"];
+  }
 }

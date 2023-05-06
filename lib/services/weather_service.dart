@@ -13,15 +13,8 @@ class weatherService {
     http.Response response = await http.get(url);
 
     Map<String, dynamic> data = jsonDecode(response.body);
-
-    var jsonData = data["forecast"]["forecastday"][0];
-
-    WeatherModel weather = WeatherModel(
-        date: data["location"]['localtime'],
-        temp: jsonData['avgtemp_c'],
-        maxtemp: jsonData['maxtemp_c'],
-        miniTemp: jsonData['mintemp_c'],
-        WeatherStateName: jsonData["condition"]['text']);
+// بنستخدم objectعشان اخزن كل البيانات اللي راجعه من API
+    WeatherModel weather = WeatherModel.fromjson(data);
 
     return weather;
   }
