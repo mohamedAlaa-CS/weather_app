@@ -1,9 +1,9 @@
 class WeatherModel {
-  String? date;
-  double? temp;
-  double? maxtemp;
-  double? miniTemp;
-  String? WeatherStateName;
+  String date;
+  double temp;
+  double maxtemp;
+  double miniTemp;
+  String WeatherStateName;
 // defolt constructor
   WeatherModel({
     required this.date,
