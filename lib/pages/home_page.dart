@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weatheer_app/models/weather_model.dart';
 import 'package:weatheer_app/pages/searchScreen.dart';
+import 'package:weatheer_app/provider/weatherProvider.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    weatherData = Provider.of<WeatherProvider>(context).weatherData;
     return Scaffold(
       appBar: AppBar(
         title: Text('Weather App'),
@@ -86,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   Spacer(),
-                  Text('Clear',
+                  Text(weatherData?.WeatherStateName ?? '',
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
                   Spacer(
