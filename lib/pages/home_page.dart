@@ -62,11 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Spacer(
                     flex: 3,
                   ),
-                  Text('Cairo',
+                  Text(Provider.of<WeatherProvider>(context).cityName!,
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
                   Text(
-                    'update:5-5-2023',
+                    '${weatherData!.date}',
                     style: TextStyle(
                       fontSize: 22,
                     ),
@@ -75,21 +75,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('lib/assets/images/clear.png'),
+                      Image.asset(weatherData!.getImage()),
                       Text(
-                        '30',
+                        '${weatherData!.temp.toInt()}',
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Column(
-                        children: [Text('MaxTemp:30'), Text('MiniTemp:20')],
+                        children: [
+                          Text('maxTemp : ${weatherData!.maxtemp.toInt()}'),
+                          Text('miniTemp :${weatherData!.miniTemp.toInt()} ')
+                        ],
                       ),
                     ],
                   ),
                   Spacer(),
-                  Text(weatherData?.WeatherStateName ?? '',
+                  Text(weatherData!.WeatherStateName,
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
                   Spacer(

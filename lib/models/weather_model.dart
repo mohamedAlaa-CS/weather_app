@@ -4,6 +4,7 @@ class WeatherModel {
   double maxtemp;
   double miniTemp;
   String WeatherStateName;
+
 // defolt constructor
   WeatherModel({
     required this.date,
@@ -17,14 +18,33 @@ class WeatherModel {
     var jsonData = data["forecast"]["forecastday"][0]['day'];
 // use facyory constructor to change normal constructor to constructor return object .
     return WeatherModel(
-        date: data["location"]['localtime'],
-        temp: jsonData['avgtemp_c'],
-        maxtemp: jsonData['maxtemp_c'],
-        miniTemp: jsonData['mintemp_c'],
-        WeatherStateName: jsonData['condition']["text"]);
+      date: data["location"]['localtime'],
+      temp: jsonData['avgtemp_c'],
+      maxtemp: jsonData['maxtemp_c'],
+      miniTemp: jsonData['mintemp_c'],
+      WeatherStateName: jsonData['condition']["text"],
+    );
   }
-  @override
-  String toString() {
-    return 'date =$date temp = $temp maxTemp = $maxtemp weaterstate =$WeatherStateName';
+  String getImage() {
+    if (WeatherStateName == 'Clear' || WeatherStateName == 'Light Cloud') {
+      return 'lib/assets/images/clear.png';
+    } else if (WeatherStateName == 'Snow' ||
+        WeatherStateName == 'Hail' ||
+        WeatherStateName == 'Sleet') {
+      return 'lib/assets/images/snow.png';
+    } else if (WeatherStateName == 'Heavy Cloud') {
+      return 'lib/assets/images/cloudy.png';
+    }
+    if (WeatherStateName == 'Light Rain' ||
+        WeatherStateName == 'Heavy Rain' ||
+        WeatherStateName == 'Moderate rain' ||
+        WeatherStateName == 'Patchy rain possible') {
+      return 'lib/assets/images/rainy.png';
+    } else if (WeatherStateName == 'Thunderstorm' ||
+        WeatherStateName == 'Thunder') {
+      return 'lib/assets/images/thunderstorm.png';
+    } else {
+      return 'lib/assets/images/clear.png';
+    }
   }
 }

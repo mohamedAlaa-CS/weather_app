@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -31,6 +32,8 @@ class searchScreen extends StatelessWidget {
                   await service.getWeather(cityName: CityName!);
               Provider.of<WeatherProvider>(context, listen: false).weatherData =
                   weather;
+              Provider.of<WeatherProvider>(context, listen: false).cityName =
+                  CityName;
 
               Navigator.pop(context);
             },
