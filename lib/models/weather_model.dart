@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WeatherModel {
-  String date;
+  DateTime date;
   double temp;
   double maxtemp;
   double miniTemp;
@@ -20,7 +20,7 @@ class WeatherModel {
     var jsonData = data["forecast"]["forecastday"][0]['day'];
 // use facyory constructor to change normal constructor to constructor return object .
     return WeatherModel(
-      date: data["location"]['localtime'],
+      date: DateTime.parse(data["location"]['localtime']),
       temp: jsonData['avgtemp_c'],
       maxtemp: jsonData['maxtemp_c'],
       miniTemp: jsonData['mintemp_c'],

@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
                   Text(
-                    '${weatherData!.date}',
+                    'updated at : ${weatherData!.date.hour.toString()}:${weatherData!.date.minute.toString()}',
                     style: TextStyle(
                       fontSize: 22,
                     ),

@@ -22,6 +22,9 @@ class searchScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Center(
           child: TextField(
+            onChanged: (data) {
+              CityName = data;
+            },
             // to use data which enter can you use tow
             //1- on change(){}
             // 2- onSubmitted: (){} بيستقبل الداتا مره واحده بس بعد مااليويز يعمل submit
@@ -43,7 +46,19 @@ class searchScreen extends StatelessWidget {
               border: OutlineInputBorder(),
               labelText: 'search',
               hintText: 'Enter City Name',
-              suffixIcon: Icon(Icons.search),
+              suffixIcon: GestureDetector(
+                  onTap: () async {
+                    weatherService service = weatherService();
+                    WeatherModel weather =
+                        await service.getWeather(cityName: CityName!);
+                    Provider.of<WeatherProvider>(context, listen: false)
+                        .weatherData = weather;
+                    Provider.of<WeatherProvider>(context, listen: false)
+                        .cityName = CityName;
+
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.search)),
             ),
           ),
         ),
