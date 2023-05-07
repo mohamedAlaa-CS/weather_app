@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class WeatherModel {
   String date;
   double temp;
@@ -30,12 +32,12 @@ class WeatherModel {
       return 'lib/assets/images/clear.png';
     } else if (WeatherStateName == 'Snow' ||
         WeatherStateName == 'Hail' ||
-        WeatherStateName == 'Sleet') {
+        WeatherStateName == 'Sleet' ||
+        WeatherStateName == 'Overcast') {
       return 'lib/assets/images/snow.png';
     } else if (WeatherStateName == 'Heavy Cloud') {
       return 'lib/assets/images/cloudy.png';
-    }
-    if (WeatherStateName == 'Light Rain' ||
+    } else if (WeatherStateName == 'Light Rain' ||
         WeatherStateName == 'Heavy Rain' ||
         WeatherStateName == 'Moderate rain' ||
         WeatherStateName == 'Patchy rain possible') {
@@ -45,6 +47,29 @@ class WeatherModel {
       return 'lib/assets/images/thunderstorm.png';
     } else {
       return 'lib/assets/images/clear.png';
+    }
+  }
+
+  MaterialColor getThemcolor() {
+    if (WeatherStateName == 'Clear' || WeatherStateName == 'Light Cloud') {
+      return Colors.orange;
+    } else if (WeatherStateName == 'Snow' ||
+        WeatherStateName == 'Hail' ||
+        WeatherStateName == 'Sleet') {
+      return Colors.blue;
+    } else if (WeatherStateName == 'Heavy Cloud') {
+      return Colors.blueGrey;
+    } else if (WeatherStateName == 'Light Rain' ||
+        WeatherStateName == 'Heavy Rain' ||
+        WeatherStateName == ' Moderate rain ' ||
+        WeatherStateName == 'Patchy rain possible' ||
+        WeatherStateName == 'Overcast') {
+      return Colors.blue;
+    } else if (WeatherStateName == 'Thunderstorm' ||
+        WeatherStateName == 'Thunder') {
+      return Colors.deepOrange;
+    } else {
+      return Colors.orange;
     }
   }
 }

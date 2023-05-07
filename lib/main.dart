@@ -5,7 +5,11 @@ import 'package:weatheer_app/pages/home_page.dart';
 import 'package:weatheer_app/provider/weatherProvider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) {
+        return WeatherProvider();
+      },
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,14 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) {
-        return WeatherProvider();
-      },
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Provider.of<WeatherProvider>(context).weatherData == null
+            ? Colors.blue
+            : Provider.of<WeatherProvider>(context).weatherData!.getThemcolor(),
       ),
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
     );
   }
 }

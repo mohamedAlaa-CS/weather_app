@@ -55,7 +55,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             )
           : Container(
-              color: Colors.orange,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    weatherData!.getThemcolor(),
+                    weatherData!.getThemcolor()[300]!,
+                    weatherData!.getThemcolor()[100]!,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
